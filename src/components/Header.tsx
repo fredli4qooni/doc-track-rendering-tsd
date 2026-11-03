@@ -4,7 +4,6 @@ import React from "react";
 import {
 	ExternalLink,
 	Search,
-	Shield,
 	Terminal
 } from "lucide-react";
 
@@ -52,9 +51,6 @@ export const Header: React.FC<HeaderProps> = ({
 					</button>
 
 					<div className="flex items-center gap-2.5">
-						<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-50 border border-cyan-200 text-cyan-600 shadow-xs">
-							<Shield className="h-4 w-4" />
-						</div>
 						<div>
 							<div className="flex items-center gap-2">
 								<span className="font-semibold text-sm tracking-wide text-zinc-900">
