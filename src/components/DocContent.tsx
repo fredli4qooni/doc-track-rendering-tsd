@@ -41,29 +41,29 @@ export const DocContent: React.FC<DocContentProps> = ({
 			: null;
 
 	return (
-		<article className="max-w-4xl mx-auto py-8 px-4 sm:px-8 lg:py-12 space-y-10 font-sans">
+		<article className="max-w-4xl mx-auto py-8 px-4 sm:px-8 lg:py-12 space-y-10 font-sans text-zinc-800">
 			{/* Breadcrumbs */}
 			<div className="flex items-center gap-1.5 text-xs text-zinc-500 font-medium">
 				<span>Documentation</span>
-				<ChevronRight className="w-3.5 h-3.5 text-zinc-600" />
-				<span className="text-zinc-400">{section.category}</span>
-				<ChevronRight className="w-3.5 h-3.5 text-zinc-600" />
-				<span className="text-cyan-400 font-semibold">{section.title}</span>
+				<ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
+				<span className="text-zinc-600">{section.category}</span>
+				<ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
+				<span className="text-cyan-700 font-semibold">{section.title}</span>
 			</div>
 
 			{/* Main Title & Summary */}
-			<header className="space-y-3 pb-6 border-b border-zinc-800/80">
+			<header className="space-y-3 pb-6 border-b border-zinc-200">
 				<div className="flex items-center gap-3">
-					<h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+					<h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900">
 						{section.title}
 					</h1>
 					{section.badge && (
-						<span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300">
+						<span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-700">
 							{section.badge}
 						</span>
 					)}
 				</div>
-				<p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
+				<p className="text-sm sm:text-base text-zinc-600 leading-relaxed">
 					{section.summary}
 				</p>
 			</header>
@@ -73,14 +73,14 @@ export const DocContent: React.FC<DocContentProps> = ({
 				{section.content.map((block, idx) => (
 					<section key={idx} className="space-y-4">
 						{block.heading && (
-							<h2 className="text-lg sm:text-xl font-semibold text-zinc-100 tracking-tight pt-2">
+							<h2 className="text-lg sm:text-xl font-semibold text-zinc-900 tracking-tight pt-2">
 								{block.heading}
 							</h2>
 						)}
 
 						{block.paragraphs &&
 							block.paragraphs.map((p, pIdx) => (
-								<p key={pIdx} className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+								<p key={pIdx} className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
 									{p}
 								</p>
 							))}
@@ -90,35 +90,35 @@ export const DocContent: React.FC<DocContentProps> = ({
 							<div
 								className={`p-4 rounded-xl border text-xs sm:text-sm leading-relaxed flex gap-3 ${
 									block.callout.type === "tip"
-										? "bg-emerald-950/20 border-emerald-500/30 text-emerald-200"
+										? "bg-emerald-50 border-emerald-200 text-emerald-900"
 										: block.callout.type === "warning"
-										? "bg-amber-950/20 border-amber-500/30 text-amber-200"
-										: "bg-cyan-950/20 border-cyan-500/30 text-cyan-200"
+										? "bg-amber-50 border-amber-200 text-amber-900"
+										: "bg-cyan-50 border-cyan-200 text-cyan-900"
 								}`}
 							>
 								<div className="shrink-0 mt-0.5">
 									{block.callout.type === "tip" ? (
-										<Lightbulb className="w-5 h-5 text-emerald-400" />
+										<Lightbulb className="w-5 h-5 text-emerald-600" />
 									) : block.callout.type === "warning" ? (
-										<AlertTriangle className="w-5 h-5 text-amber-400" />
+										<AlertTriangle className="w-5 h-5 text-amber-600" />
 									) : (
-										<Info className="w-5 h-5 text-cyan-400" />
+										<Info className="w-5 h-5 text-cyan-600" />
 									)}
 								</div>
 								<div>
-									<div className="font-semibold text-white mb-1">
+									<div className="font-semibold text-zinc-900 mb-1">
 										{block.callout.title}
 									</div>
-									<div className="text-zinc-300">{block.callout.text}</div>
+									<div className="text-zinc-700">{block.callout.text}</div>
 								</div>
 							</div>
 						)}
 
 						{/* Code Block */}
 						{block.codeBlock && (
-							<div className="rounded-xl border border-zinc-800 bg-zinc-950 overflow-hidden shadow-lg shadow-black/40">
+							<div className="rounded-xl border border-zinc-800 bg-zinc-950 overflow-hidden shadow-sm">
 								{block.codeBlock.title && (
-									<div className="flex items-center justify-between px-4 py-2 border-b border-zinc-800/80 bg-zinc-900/60 text-xs">
+									<div className="flex items-center justify-between px-4 py-2 border-b border-zinc-800 bg-zinc-900 text-xs">
 										<div className="flex items-center gap-2 text-zinc-400 font-mono text-[11px]">
 											<Terminal className="w-3.5 h-3.5 text-cyan-400" />
 											<span>{block.codeBlock.title}</span>
@@ -157,10 +157,10 @@ export const DocContent: React.FC<DocContentProps> = ({
 
 						{/* Data Table */}
 						{block.table && (
-							<div className="rounded-xl border border-zinc-800 overflow-hidden shadow-sm">
+							<div className="rounded-xl border border-zinc-200 overflow-hidden shadow-2xs">
 								<div className="overflow-x-auto">
 									<table className="w-full text-left text-xs">
-										<thead className="bg-zinc-900/80 text-zinc-300 font-semibold uppercase text-[10px] tracking-wider border-b border-zinc-800">
+										<thead className="bg-zinc-100 text-zinc-700 font-semibold uppercase text-[10px] tracking-wider border-b border-zinc-200">
 											<tr>
 												{block.table.headers.map((h, hIdx) => (
 													<th key={hIdx} className="px-4 py-3">
@@ -169,14 +169,14 @@ export const DocContent: React.FC<DocContentProps> = ({
 												))}
 											</tr>
 										</thead>
-										<tbody className="divide-y divide-zinc-800/60 text-zinc-300 font-normal">
+										<tbody className="divide-y divide-zinc-200 text-zinc-700 font-normal">
 											{block.table.rows.map((row, rIdx) => (
 												<tr
 													key={rIdx}
 													className={
 														rIdx % 2 === 0
-															? "bg-zinc-950/40 hover:bg-zinc-900/30 transition-colors"
-															: "bg-zinc-900/20 hover:bg-zinc-900/40 transition-colors"
+															? "bg-white hover:bg-zinc-50 transition-colors"
+															: "bg-zinc-50/50 hover:bg-zinc-50 transition-colors"
 													}
 												>
 													{row.map((cell, cIdx) => (
@@ -197,18 +197,18 @@ export const DocContent: React.FC<DocContentProps> = ({
 							<div className="space-y-6 pt-2">
 								{block.subsections.map((sub, sIdx) => (
 									<div key={sIdx} className="space-y-3">
-										<h3 className="text-sm sm:text-base font-semibold text-cyan-300">
+										<h3 className="text-sm sm:text-base font-semibold text-cyan-800">
 											{sub.title}
 										</h3>
 										{sub.content.map((p, spIdx) => (
-											<p key={spIdx} className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+											<p key={spIdx} className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
 												{p}
 											</p>
 										))}
 										{sub.codeBlock && (
-											<div className="rounded-xl border border-zinc-800 bg-zinc-950 overflow-hidden shadow-md">
+											<div className="rounded-xl border border-zinc-800 bg-zinc-950 overflow-hidden shadow-sm">
 												{sub.codeBlock.title && (
-													<div className="flex items-center justify-between px-4 py-2 border-b border-zinc-800/80 bg-zinc-900/60 text-xs">
+													<div className="flex items-center justify-between px-4 py-2 border-b border-zinc-800 bg-zinc-900 text-xs">
 														<span className="text-[11px] font-mono text-zinc-400">
 															{sub.codeBlock.title}
 														</span>
@@ -252,19 +252,19 @@ export const DocContent: React.FC<DocContentProps> = ({
 			</div>
 
 			{/* Pagination Footer */}
-			<div className="pt-10 border-t border-zinc-800/80 flex items-center justify-between gap-4">
+			<div className="pt-10 border-t border-zinc-200 flex items-center justify-between gap-4">
 				{prevSection ? (
 					<button
 						type="button"
 						onClick={() => onNavigate(prevSection.id)}
-						className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-zinc-800 hover:border-zinc-700 bg-zinc-900/50 hover:bg-zinc-900 text-zinc-300 hover:text-white text-xs transition-colors"
+						className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-zinc-200 hover:border-zinc-300 bg-white hover:bg-zinc-50 text-zinc-700 hover:text-zinc-900 text-xs transition-colors shadow-2xs"
 					>
-						<ArrowLeft className="w-4 h-4 text-cyan-400" />
+						<ArrowLeft className="w-4 h-4 text-cyan-600" />
 						<div className="text-left">
-							<div className="text-[10px] text-zinc-500 uppercase font-semibold">
+							<div className="text-[10px] text-zinc-400 uppercase font-semibold">
 								Previous
 							</div>
-							<div className="font-medium truncate max-w-[140px] sm:max-w-[200px]">
+							<div className="font-medium truncate max-w-[140px] sm:max-w-[200px] text-zinc-900">
 								{prevSection.title}
 							</div>
 						</div>
@@ -277,17 +277,17 @@ export const DocContent: React.FC<DocContentProps> = ({
 					<button
 						type="button"
 						onClick={() => onNavigate(nextSection.id)}
-						className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-zinc-800 hover:border-zinc-700 bg-zinc-900/50 hover:bg-zinc-900 text-zinc-300 hover:text-white text-xs transition-colors ml-auto"
+						className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-zinc-200 hover:border-zinc-300 bg-white hover:bg-zinc-50 text-zinc-700 hover:text-zinc-900 text-xs transition-colors ml-auto shadow-2xs"
 					>
 						<div className="text-right">
-							<div className="text-[10px] text-zinc-500 uppercase font-semibold">
+							<div className="text-[10px] text-zinc-400 uppercase font-semibold">
 								Next
 							</div>
-							<div className="font-medium truncate max-w-[140px] sm:max-w-[200px]">
+							<div className="font-medium truncate max-w-[140px] sm:max-w-[200px] text-zinc-900">
 								{nextSection.title}
 							</div>
 						</div>
-						<ArrowRight className="w-4 h-4 text-cyan-400" />
+						<ArrowRight className="w-4 h-4 text-cyan-600" />
 					</button>
 				)}
 			</div>
@@ -296,4 +296,3 @@ export const DocContent: React.FC<DocContentProps> = ({
 };
 
 export default DocContent;
-

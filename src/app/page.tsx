@@ -36,7 +36,7 @@ export default function Home() {
 		DOC_SECTIONS.find((s) => s.id === activeId) ?? DOC_SECTIONS[0];
 
 	return (
-		<div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
+		<div className="min-h-screen bg-white text-zinc-900 flex flex-col font-sans selection:bg-cyan-100 selection:text-cyan-900">
 			{/* Top Header */}
 			<Header
 				searchQuery={searchQuery}
@@ -56,7 +56,7 @@ export default function Home() {
 				/>
 
 				{/* Documentation Article Area */}
-				<main className="flex-1 min-w-0 pb-16">
+				<main className="flex-1 min-w-0 pb-16 bg-white">
 					<DocContent
 						section={currentSection}
 						onNavigate={handleSelectSection}

@@ -2,7 +2,6 @@
 
 import React from "react";
 import {
-	Activity,
 	ExternalLink,
 	Search,
 	Shield,
@@ -39,33 +38,33 @@ export const Header: React.FC<HeaderProps> = ({
 	onToggleMobileMenu
 }) => {
 	return (
-		<header className="sticky top-0 z-40 w-full border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
+		<header className="sticky top-0 z-40 w-full border-b border-zinc-200 bg-white/90 backdrop-blur-md">
 			<div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
 				{/* Left: Brand & Mobile Toggle */}
 				<div className="flex items-center gap-3">
 					<button
 						type="button"
 						onClick={onToggleMobileMenu}
-						className="inline-flex items-center justify-center p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 lg:hidden"
+						className="inline-flex items-center justify-center p-2 rounded-lg text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 lg:hidden"
 						aria-label="Toggle Navigation"
 					>
 						<Terminal className="w-5 h-5" />
 					</button>
 
 					<div className="flex items-center gap-2.5">
-						<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 shadow-sm shadow-cyan-950/40">
+						<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-50 border border-cyan-200 text-cyan-600 shadow-xs">
 							<Shield className="h-4 w-4" />
 						</div>
 						<div>
 							<div className="flex items-center gap-2">
-								<span className="font-semibold text-sm tracking-wide text-zinc-100">
+								<span className="font-semibold text-sm tracking-wide text-zinc-900">
 									TSD Docs
 								</span>
-								<span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-800 text-cyan-400 border border-zinc-700/60 font-medium">
+								<span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-100 text-cyan-700 border border-zinc-200 font-medium">
 									v1.0.0
 								</span>
 							</div>
-							<p className="text-[10px] text-zinc-400 hidden sm:block">
+							<p className="text-[10px] text-zinc-500 hidden sm:block">
 								Tactical Situation Display Architecture & Guide
 							</p>
 						</div>
@@ -75,19 +74,19 @@ export const Header: React.FC<HeaderProps> = ({
 				{/* Center: Search Bar */}
 				<div className="flex-1 max-w-md mx-4 hidden md:block">
 					<div className="relative">
-						<Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+						<Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
 						<input
 							type="text"
 							placeholder="Search architecture, WebGL, APIs, Go backend..."
 							value={searchQuery}
 							onChange={(e) => setSearchQuery(e.target.value)}
-							className="w-full bg-zinc-900 border border-zinc-800 rounded-lg pl-9 pr-4 py-1.5 text-xs text-zinc-200 placeholder:text-zinc-500 focus:outline-none focus:border-cyan-500/60 transition-colors"
+							className="w-full bg-zinc-50 border border-zinc-200 rounded-lg pl-9 pr-4 py-1.5 text-xs text-zinc-800 placeholder:text-zinc-400 focus:outline-none focus:border-cyan-500 focus:bg-white transition-colors"
 						/>
 						{searchQuery && (
 							<button
 								type="button"
 								onClick={() => setSearchQuery("")}
-								className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-zinc-500 hover:text-zinc-300"
+								className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-zinc-400 hover:text-zinc-600"
 							>
 								✕
 							</button>
@@ -99,12 +98,12 @@ export const Header: React.FC<HeaderProps> = ({
 				<div className="flex items-center gap-2.5">
 					{/* Service Status */}
 					<div className="hidden xl:flex items-center gap-2 text-[11px] font-mono">
-						<span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-950/50 border border-emerald-500/30 text-emerald-300">
-							<span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+						<span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 font-medium">
+							<span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
 							FE :8123
 						</span>
-						<span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-cyan-950/50 border border-cyan-500/30 text-cyan-300">
-							<span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+						<span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-700 font-medium">
+							<span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
 							BE :8080
 						</span>
 					</div>
@@ -115,24 +114,24 @@ export const Header: React.FC<HeaderProps> = ({
 							href="https://github.com/fredli4qooni/fe-track-rendering-tsd.git"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-white text-xs font-medium transition-colors"
+							className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white hover:bg-zinc-50 border border-zinc-200 text-zinc-700 hover:text-zinc-900 text-xs font-medium transition-colors shadow-2xs"
 							title="Frontend GitHub Repository"
 						>
-							<GithubIcon className="w-3.5 h-3.5 text-cyan-400" />
+							<GithubIcon className="w-3.5 h-3.5 text-cyan-600" />
 							<span className="hidden sm:inline">Frontend</span>
-							<ExternalLink className="w-3 h-3 text-zinc-500" />
+							<ExternalLink className="w-3 h-3 text-zinc-400" />
 						</a>
 
 						<a
 							href="https://github.com/fredli4qooni/be-track-rendering-tsd.git"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-white text-xs font-medium transition-colors"
+							className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white hover:bg-zinc-50 border border-zinc-200 text-zinc-700 hover:text-zinc-900 text-xs font-medium transition-colors shadow-2xs"
 							title="Backend GitHub Repository"
 						>
-							<GithubIcon className="w-3.5 h-3.5 text-emerald-400" />
+							<GithubIcon className="w-3.5 h-3.5 text-emerald-600" />
 							<span className="hidden sm:inline">Backend</span>
-							<ExternalLink className="w-3 h-3 text-zinc-500" />
+							<ExternalLink className="w-3 h-3 text-zinc-400" />
 						</a>
 					</div>
 				</div>

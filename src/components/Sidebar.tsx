@@ -4,16 +4,12 @@ import React from "react";
 import {
 	BookOpen,
 	Code2,
-	Cpu,
-	FileCode,
 	Layers,
 	Server,
-	ShieldCheck,
-	Workflow,
-	Zap
+	ShieldCheck
 } from "lucide-react";
 
-import { DOC_SECTIONS, DocSection } from "../data/docsContent";
+import { DOC_SECTIONS } from "../data/docsContent";
 
 interface SidebarProps {
 	activeId: string;
@@ -24,11 +20,11 @@ interface SidebarProps {
 }
 
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
-	"Getting Started": <BookOpen className="w-4 h-4 text-cyan-400" />,
-	"Frontend Engineering": <Layers className="w-4 h-4 text-amber-400" />,
-	"Backend Architecture": <Server className="w-4 h-4 text-emerald-400" />,
-	"API & Protocols": <Code2 className="w-4 h-4 text-indigo-400" />,
-	"Quality & Governance": <ShieldCheck className="w-4 h-4 text-teal-400" />
+	"Getting Started": <BookOpen className="w-4 h-4 text-cyan-600" />,
+	"Frontend Engineering": <Layers className="w-4 h-4 text-amber-600" />,
+	"Backend Architecture": <Server className="w-4 h-4 text-emerald-600" />,
+	"API & Protocols": <Code2 className="w-4 h-4 text-indigo-600" />,
+	"Quality & Governance": <ShieldCheck className="w-4 h-4 text-teal-600" />
 };
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -65,7 +61,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 					const items = filteredSections.filter((s) => s.category === cat);
 					return (
 						<div key={cat} className="space-y-1.5">
-							<div className="flex items-center gap-2 px-2 text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
+							<div className="flex items-center gap-2 px-2 text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">
 								{CATEGORY_ICONS[cat]}
 								<span>{cat}</span>
 							</div>
@@ -83,8 +79,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
 											}}
 											className={`w-full flex items-center justify-between px-3 py-2 text-xs rounded-lg text-left transition-all ${
 												isActive
-													? "bg-cyan-500/10 text-cyan-300 font-semibold border border-cyan-500/20 shadow-sm"
-													: "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900 border border-transparent font-normal"
+													? "bg-cyan-50 text-cyan-800 font-semibold border border-cyan-200 shadow-2xs"
+													: "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100/80 border border-transparent font-normal"
 											}`}
 										>
 											<span className="truncate">{item.title}</span>
@@ -92,8 +88,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
 												<span
 													className={`text-[9px] font-mono px-1.5 py-0.5 rounded ml-2 shrink-0 ${
 														isActive
-															? "bg-cyan-900/60 text-cyan-200 border border-cyan-500/30"
-															: "bg-zinc-800 text-zinc-400"
+															? "bg-cyan-100 text-cyan-800 border border-cyan-200 font-medium"
+															: "bg-zinc-200/70 text-zinc-600 font-normal"
 													}`}
 												>
 													{item.badge}
@@ -113,7 +109,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 	return (
 		<>
 			{/* Desktop Sticky Sidebar */}
-			<aside className="hidden lg:block w-72 shrink-0 border-r border-zinc-800 bg-zinc-950/40 min-h-[calc(100vh-4rem)]">
+			<aside className="hidden lg:block w-72 shrink-0 border-r border-zinc-200 bg-zinc-50/50 min-h-[calc(100vh-4rem)]">
 				<div className="sticky top-16 h-[calc(100vh-4rem)]">
 					{sidebarContent}
 				</div>
@@ -123,18 +119,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
 			{isOpenMobile && (
 				<div className="fixed inset-0 z-50 flex lg:hidden">
 					<div
-						className="fixed inset-0 bg-black/70 backdrop-blur-sm"
+						className="fixed inset-0 bg-black/40 backdrop-blur-xs"
 						onClick={onCloseMobile}
 					/>
-					<div className="relative w-80 max-w-[85%] bg-zinc-950 border-r border-zinc-800 h-full z-10 shadow-2xl">
-						<div className="p-4 border-b border-zinc-800 flex items-center justify-between">
-							<span className="font-semibold text-sm text-zinc-100">
+					<div className="relative w-80 max-w-[85%] bg-white border-r border-zinc-200 h-full z-10 shadow-2xl">
+						<div className="p-4 border-b border-zinc-200 flex items-center justify-between">
+							<span className="font-semibold text-sm text-zinc-900">
 								Documentation Index
 							</span>
 							<button
 								type="button"
 								onClick={onCloseMobile}
-								className="text-zinc-400 hover:text-white text-xs px-2 py-1 rounded hover:bg-zinc-800"
+								className="text-zinc-500 hover:text-zinc-800 text-xs px-2 py-1 rounded hover:bg-zinc-100"
 							>
 								✕
 							</button>
@@ -148,4 +144,3 @@ export const Sidebar: React.FC<SidebarProps> = ({
 };
 
 export default Sidebar;
-
