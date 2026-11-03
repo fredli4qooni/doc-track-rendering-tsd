@@ -10,6 +10,7 @@ import {
 	Copy,
 	Info,
 	Lightbulb,
+	Play,
 	Terminal
 } from "lucide-react";
 
@@ -68,6 +69,44 @@ export const DocContent: React.FC<DocContentProps> = ({
 				</p>
 			</header>
 
+			{/* Video Embed (Hero Demonstration) */}
+			{section.videoEmbed && (
+				<div className="rounded-2xl border border-zinc-200 bg-zinc-50/70 p-3.5 sm:p-5 space-y-3.5 shadow-xs">
+					<div className="flex items-center justify-between">
+						<div className="flex items-center gap-2.5">
+							<div className="flex h-7 w-7 items-center justify-center rounded-lg bg-red-50 border border-red-200 text-red-600">
+								<Play className="h-3.5 w-3.5 fill-red-600 text-red-600" />
+							</div>
+							<div>
+								<h2 className="text-sm font-semibold text-zinc-900 tracking-tight">
+									{section.videoEmbed.title}
+								</h2>
+							</div>
+						</div>
+						<span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-red-50 border border-red-200 text-red-700">
+							Live Walkthrough
+						</span>
+					</div>
+
+					<div className="relative w-full aspect-video rounded-xl overflow-hidden border border-zinc-200 bg-zinc-950 shadow-sm">
+						<iframe
+							className="absolute inset-0 w-full h-full"
+							src={section.videoEmbed.src}
+							title={section.videoEmbed.title || "YouTube video player"}
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							referrerPolicy="strict-origin-when-cross-origin"
+							allowFullScreen
+						/>
+					</div>
+
+					{section.videoEmbed.description && (
+						<p className="text-xs text-zinc-500 leading-relaxed px-1">
+							{section.videoEmbed.description}
+						</p>
+					)}
+				</div>
+			)}
+
 			{/* Section Content Blocks */}
 			<div className="space-y-10">
 				{section.content.map((block, idx) => (
@@ -84,6 +123,40 @@ export const DocContent: React.FC<DocContentProps> = ({
 									{p}
 								</p>
 							))}
+
+						{/* In-block Video Embed */}
+						{block.videoEmbed && (
+							<div className="rounded-2xl border border-zinc-200 bg-zinc-50/70 p-3.5 sm:p-5 space-y-3 shadow-xs">
+								<div className="flex items-center justify-between">
+									<div className="flex items-center gap-2">
+										<div className="flex h-7 w-7 items-center justify-center rounded-lg bg-red-50 border border-red-200 text-red-600">
+											<Play className="h-3.5 w-3.5 fill-red-600 text-red-600" />
+										</div>
+										<h3 className="text-sm font-semibold text-zinc-900">
+											{block.videoEmbed.title}
+										</h3>
+									</div>
+									<span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-red-50 border border-red-200 text-red-700">
+										Demo Video
+									</span>
+								</div>
+								<div className="relative w-full aspect-video rounded-xl overflow-hidden border border-zinc-200 bg-zinc-950 shadow-sm">
+									<iframe
+										className="absolute inset-0 w-full h-full"
+										src={block.videoEmbed.src}
+										title={block.videoEmbed.title || "YouTube video player"}
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+										referrerPolicy="strict-origin-when-cross-origin"
+										allowFullScreen
+									/>
+								</div>
+								{block.videoEmbed.description && (
+									<p className="text-xs text-zinc-500 leading-relaxed px-1">
+										{block.videoEmbed.description}
+									</p>
+								)}
+							</div>
+						)}
 
 						{/* Callout Box */}
 						{block.callout && (

@@ -84,17 +84,24 @@ export const Sidebar: React.FC<SidebarProps> = ({
 											}`}
 										>
 											<span className="truncate">{item.title}</span>
-											{item.badge && (
-												<span
-													className={`text-[9px] font-mono px-1.5 py-0.5 rounded ml-2 shrink-0 ${
-														isActive
-															? "bg-cyan-100 text-cyan-800 border border-cyan-200 font-medium"
-															: "bg-zinc-200/70 text-zinc-600 font-normal"
-													}`}
-												>
-													{item.badge}
-												</span>
-											)}
+											<div className="flex items-center gap-1.5 ml-2 shrink-0">
+												{item.videoEmbed && (
+													<span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-red-50 text-red-700 border border-red-200">
+														Video
+													</span>
+												)}
+												{item.badge && (
+													<span
+														className={`text-[9px] font-mono px-1.5 py-0.5 rounded ${
+															isActive
+																? "bg-cyan-100 text-cyan-800 border border-cyan-200 font-medium"
+																: "bg-zinc-200/70 text-zinc-600 font-normal"
+														}`}
+													>
+														{item.badge}
+													</span>
+												)}
+											</div>
 										</button>
 									);
 								})}

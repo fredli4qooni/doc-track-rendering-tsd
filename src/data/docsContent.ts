@@ -1,12 +1,20 @@
+export interface VideoEmbed {
+	title: string;
+	src: string;
+	description?: string;
+}
+
 export interface DocSection {
 	id: string;
 	title: string;
 	category: "Getting Started" | "Frontend Engineering" | "Backend Architecture" | "API & Protocols" | "Quality & Governance";
 	badge?: string;
 	summary: string;
+	videoEmbed?: VideoEmbed;
 	content: {
 		heading?: string;
 		paragraphs?: string[];
+		videoEmbed?: VideoEmbed;
 		codeBlock?: {
 			language: string;
 			title?: string;
@@ -41,6 +49,12 @@ export const DOC_SECTIONS: DocSection[] = [
 		badge: "Core Architecture",
 		summary:
 			"High-performance Tactical Situation Display (TSD) Track Rendering & Management Platform built for defense and maritime surveillance applications.",
+		videoEmbed: {
+			title: "Live Tactical Platform & WebGL2 Performance Walkthrough",
+			src: "https://www.youtube.com/embed/6D_ltt7D-qU?si=GmhyUir4eGkq9Vpn",
+			description:
+				"Video walkthrough demonstrating 10,000+ tactical contacts rendered via MapTalks & WebGL2 hardware instancing at 60 FPS, background kinematics Web Workers, real-time CRUD entity management, and pure-Go SQLite persistence synchronization."
+		},
 		content: [
 			{
 				heading: "Executive Summary",
