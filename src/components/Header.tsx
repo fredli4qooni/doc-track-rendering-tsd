@@ -4,14 +4,15 @@ import React from "react";
 import {
 	Activity,
 	ExternalLink,
-	GitBranch,
 	Search,
 	Shield,
 	Terminal
 } from "lucide-react";
 
 // Inline GitHub SVG for clean, dependency-free rendering
-const GithubIcon: React.FC<{ className?: string }> = ({ className = "w-3.5 h-3.5" }) => (
+const GithubIcon: React.FC<{ className?: string }> = ({
+	className = "w-3.5 h-3.5"
+}) => (
 	<svg
 		className={className}
 		fill="currentColor"
