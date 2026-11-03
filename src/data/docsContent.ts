@@ -59,48 +59,34 @@ export const DOC_SECTIONS: DocSection[] = [
 				paragraphs: [
 					"The system is organized into two primary autonomous services communicating over structured REST APIs with complete Protocol Buffer schema parity:"
 				],
-				codeBlock: {
-					language: "text",
-					title: "Dual-Stack Architectural Topology",
-					code: `┌────────────────────────────────────────────────────────────────────────┐
-│                        TACTICAL DISPLAY FRONTEND                       │
-│                         (http://localhost:8123)                        │
-│                                                                        │
-│   ┌─────────────────────┐    ┌─────────────────────────────────────┐   │
-│   │ MapTalks 1.6.1 +    │    │ Multi-Threaded Web Workers          │   │
-│   │ WebGL2 Instancing   │◄───┤ • trackMover.worker.ts (Kinematics) │   │
-│   │ (10,000+ tracks)    │    │ • trackHistory.worker.ts (History)  │   │
-│   └──────────▲──────────┘    └──────────────────┬──────────────────┘   │
-│              │                                  │                      │
-│              └────────────┬─────────────────────┘                      │
-│                           ▼                                            │
-│                ┌────────────────────┐                                  │
-│                │ Zustand Core Store │                                  │
-│                │ (track.store.ts)   │                                  │
-│                └──────────▲─────────┘                                  │
-└───────────────────────────┼────────────────────────────────────────────┘
-                            │ REST JSON HTTP Client
-                            │ (entityApi.ts)
-                            ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                         BACKEND PERSISTENCE API                        │
-│                         (http://localhost:8080)                        │
-│                                                                        │
-│   ┌────────────────────────────────────────────────────────────────┐   │
-│   │ Go 1.22+ net/http Handler & Symmetrical Domain Validator       │   │
-│   └───────────────────────────────┬────────────────────────────────┘   │
-│                                   ▼                                    │
-│   ┌────────────────────────────────────────────────────────────────┐   │
-│   │ Entity Service Layer (CRUD Operations & Auto-Seed Generator)   │   │
-│   └───────────────────────────────┬────────────────────────────────┘   │
-│                                   ▼                                    │
-│   ┌────────────────────────────────────────────────────────────────┐   │
-│   │ SQLite Repository (modernc.org/sqlite Pure Go, WAL mode)       │   │
-│   └───────────────────────────────┬────────────────────────────────┘   │
-│                                   ▼                                    │
-│                  [data/entities.db (Persistent Storage)]               │
-└────────────────────────────────────────────────────────────────────────┘`
-				}
+				subsections: [
+					{
+						title: "1. Tactical Display Frontend (Client Layer)",
+						content: [
+							"• MapTalks & WebGL2 Hardware Instancing: Renders 10,000+ tactical contacts simultaneously in a single GPU draw call using custom vertex/fragment shaders and 2D texture arrays.",
+							"• Multi-Threaded Web Workers: Background threads (trackMover.worker.ts and trackHistory.worker.ts) calculate spherical kinematics and breadcrumb polylines without blocking the 60 FPS UI main thread.",
+							"• Zustand Core Store: Decoupled reactive state management keeping track telemetry and selected entity details synchronized across React components, WebGL layers, and background workers.",
+							"• HTTP / REST Client: Handles asynchronous synchronization, optimistic UI updates, and error recovery against the persistence backend."
+						]
+					},
+					{
+						title: "2. Persistence Backend Service (Server Layer)",
+						content: [
+							"• Go 1.22+ Standard HTTP Routing: Lightweight, pattern-matched REST endpoints handling CRUD operations and health monitoring without third-party framework overhead.",
+							"• Symmetrical Domain Validation: Strict data boundary enforcement (coordinates, bearing, speed, callsign formatting) matching frontend validator rules.",
+							"• Pure-Go SQLite Database (WAL Mode): High-concurrency embedded persistence using modernc.org/sqlite with Write-Ahead Logging enabled for non-blocking concurrent reads and writes.",
+							"• Protocol Buffers Parity: Complete schema definition (proto/entity.proto) maintaining full compatibility with enterprise gRPC-Web and APISIX gateway architectures."
+						]
+					},
+					{
+						title: "3. Inter-Service Communication Contract",
+						content: [
+							"• Transport: Standard HTTP/1.1 REST with JSON payloads, enabling zero-friction development and immediate reviewer evaluation.",
+							"• CORS Security: Configured to accept cross-origin requests specifically from the frontend development port (http://localhost:8123).",
+							"• Resilient Fault Handling: Frontend features non-blocking degraded mode with automatic retry mechanisms and informative error diagnostics if the backend is unreachable."
+						]
+					}
+				]
 			},
 			{
 				heading: "Technology Stack Matrix",
