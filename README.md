@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# doc-explore-maptalks
 
-## Getting Started
+> **Minimalist Architecture & Developer Documentation Website for Tactical Situation Display (TSD)**  
+> Built with Next.js 16 (App Router), React 19, TypeScript, and TailwindCSS.
 
-First, run the development server:
+---
 
+## 📖 Overview
+
+This repository hosts the comprehensive technical documentation website for the dual-stack **Tactical Situation Display (TSD)** project:
+- **Frontend (`fe-track-rendering-tsd`)**: MapTalks 1.6.1 + Custom WebGL2 Hardware Instancing + Zustand + Web Workers.
+- **Backend (`be-track-rendering-tsd`)**: Go 1.22+ Layered REST API + Pure Go SQLite (WAL Mode) + Protocol Buffers Contract.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18.x or higher
+- pnpm package manager (`corepack enable && corepack prepare pnpm@latest --activate`)
+
+### Development Server
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Install dependencies
+pnpm install
+
+# Run the development server (default port 3000)
 pnpm dev
-# or
-bun dev
+```
+Open **`http://localhost:3000`** in your browser.
+
+### Production Build
+```bash
+# Type check and build static pages
+pnpm build
+
+# Run production server
+pnpm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack & Key Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js 16 & App Router**: Fast static page generation, server components, and Turbopack bundler.
+- **Minimalist Tactical CMS Aesthetic**: Dark theme styling using TailwindCSS with custom HUD palettes.
+- **Interactive Deep Linking**: Full synchronization with URL hashes (`#overview`, `#webgl-instancing`, `#api-reference`).
+- **Instant Search**: Real-time filtering across topics, summaries, and categories.
+- **One-Click Code Copy**: Copy-to-clipboard buttons with visual confirmation feedback.
+- **Dual-Stack Topology Diagrams**: Visual system maps and protocol comparisons.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🔗 Related Repositories
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Frontend Repository**: [https://github.com/fredli4qooni/fe-track-rendering-tsd.git](https://github.com/fredli4qooni/fe-track-rendering-tsd.git)
+- **Backend Repository**: [https://github.com/fredli4qooni/be-track-rendering-tsd.git](https://github.com/fredli4qooni/be-track-rendering-tsd.git)
