@@ -3,8 +3,8 @@
 import React from "react";
 import {
 	ExternalLink,
-	Search,
-	Terminal
+	Menu,
+	Search
 } from "lucide-react";
 
 // Inline GitHub SVG for clean, dependency-free rendering
@@ -40,20 +40,20 @@ export const Header: React.FC<HeaderProps> = ({
 		<header className="sticky top-0 z-40 w-full border-b border-zinc-200 bg-white/90 backdrop-blur-md">
 			<div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
 				{/* Left: Brand & Mobile Toggle */}
-				<div className="flex items-center gap-3">
+				<div className="flex items-center gap-2 sm:gap-3">
 					<button
 						type="button"
 						onClick={onToggleMobileMenu}
-						className="inline-flex items-center justify-center p-2 rounded-lg text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 lg:hidden"
-						aria-label="Toggle Navigation"
+						className="inline-flex items-center justify-center p-2 rounded-lg text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 lg:hidden focus:outline-none focus:ring-2 focus:ring-cyan-500/20"
+						aria-label="Toggle Navigation Menu"
 					>
-						<Terminal className="w-5 h-5" />
+						<Menu className="w-5 h-5 text-zinc-700" />
 					</button>
 
-					<div className="flex items-center gap-2.5">
+					<div className="flex items-center gap-2">
 						<div>
-							<div className="flex items-center gap-2">
-								<span className="font-semibold text-sm tracking-wide text-zinc-900">
+							<div className="flex items-center gap-1.5 sm:gap-2">
+								<span className="font-semibold text-sm tracking-wide text-zinc-900 whitespace-nowrap">
 									TSD Docs
 								</span>
 								<span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-100 text-cyan-700 border border-zinc-200 font-medium">
@@ -68,7 +68,7 @@ export const Header: React.FC<HeaderProps> = ({
 				</div>
 
 				{/* Center: Search Bar */}
-				<div className="flex-1 max-w-md mx-4 hidden md:block">
+				<div className="flex-1 max-w-md mx-3 hidden md:block">
 					<div className="relative">
 						<Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
 						<input
@@ -90,21 +90,20 @@ export const Header: React.FC<HeaderProps> = ({
 					</div>
 				</div>
 
-				{/* Right: Status Pills & GitHub Links */}
-				<div className="flex items-center gap-2.5">
-					{/* Service Status */}
-					<div className="hidden xl:flex items-center gap-2 text-[11px] font-mono">
-						<span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 font-medium">
-							<span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-							FE :8123
-						</span>
-						<span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-700 font-medium">
-							<span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
-							BE :8080
-						</span>
-					</div>
+				{/* Right: Search Mobile Trigger & GitHub Links */}
+				<div className="flex items-center gap-2">
+					{/* Mobile Search Button */}
+					<button
+						type="button"
+						onClick={onToggleMobileMenu}
+						className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors"
+						aria-label="Search documentation"
+						title="Search Documentation"
+					>
+						<Search className="w-4 h-4" />
+					</button>
 
-					{/* GitHub Repositories Dropdown/Buttons */}
+					{/* GitHub Repositories Buttons */}
 					<div className="flex items-center gap-1.5">
 						<a
 							href="https://github.com/fredli4qooni/fe-track-rendering-tsd.git"

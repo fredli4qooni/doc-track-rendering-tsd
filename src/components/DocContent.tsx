@@ -42,29 +42,29 @@ export const DocContent: React.FC<DocContentProps> = ({
 			: null;
 
 	return (
-		<article className="max-w-4xl mx-auto py-8 px-4 sm:px-8 lg:py-12 space-y-10 font-sans text-zinc-800">
+		<article className="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8 lg:py-10 space-y-8 sm:space-y-10 font-sans text-zinc-800">
 			{/* Breadcrumbs */}
-			<div className="flex items-center gap-1.5 text-xs text-zinc-500 font-medium">
-				<span>Documentation</span>
-				<ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
-				<span className="text-zinc-600">{section.category}</span>
-				<ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
-				<span className="text-cyan-700 font-semibold">{section.title}</span>
+			<div className="flex flex-wrap items-center gap-1.5 text-xs text-zinc-500 font-medium">
+				<span>Docs</span>
+				<ChevronRight className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
+				<span className="text-zinc-600 truncate max-w-[120px] sm:max-w-none">{section.category}</span>
+				<ChevronRight className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
+				<span className="text-cyan-700 font-semibold truncate max-w-[180px] sm:max-w-none">{section.title}</span>
 			</div>
 
 			{/* Main Title & Summary */}
 			<header className="space-y-3 pb-6 border-b border-zinc-200">
-				<div className="flex items-center gap-3">
-					<h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900">
+				<div className="flex flex-wrap items-center gap-2 sm:gap-3">
+					<h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-zinc-900">
 						{section.title}
 					</h1>
 					{section.badge && (
-						<span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-700">
+						<span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-700 whitespace-nowrap">
 							{section.badge}
 						</span>
 					)}
 				</div>
-				<p className="text-sm sm:text-base text-zinc-600 leading-relaxed">
+				<p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
 					{section.summary}
 				</p>
 			</header>
@@ -232,11 +232,11 @@ export const DocContent: React.FC<DocContentProps> = ({
 						{block.table && (
 							<div className="rounded-xl border border-zinc-200 overflow-hidden shadow-2xs">
 								<div className="overflow-x-auto">
-									<table className="w-full text-left text-xs">
+									<table className="w-full min-w-[540px] text-left text-xs">
 										<thead className="bg-zinc-100 text-zinc-700 font-semibold uppercase text-[10px] tracking-wider border-b border-zinc-200">
 											<tr>
 												{block.table.headers.map((h, hIdx) => (
-													<th key={hIdx} className="px-4 py-3">
+													<th key={hIdx} className="px-3.5 py-2.5 sm:px-4 sm:py-3 whitespace-nowrap">
 														{h}
 													</th>
 												))}
@@ -253,7 +253,7 @@ export const DocContent: React.FC<DocContentProps> = ({
 													}
 												>
 													{row.map((cell, cIdx) => (
-														<td key={cIdx} className="px-4 py-3 align-top leading-relaxed">
+														<td key={cIdx} className="px-3.5 py-2.5 sm:px-4 sm:py-3 align-top leading-relaxed">
 															{cell}
 														</td>
 													))}
@@ -261,6 +261,9 @@ export const DocContent: React.FC<DocContentProps> = ({
 											))}
 										</tbody>
 									</table>
+								</div>
+								<div className="sm:hidden px-3 py-1.5 bg-zinc-50 border-t border-zinc-200 text-[10px] text-zinc-400 text-right">
+									Scroll horizontally to view full table &rarr;
 								</div>
 							</div>
 						)}
@@ -325,42 +328,42 @@ export const DocContent: React.FC<DocContentProps> = ({
 			</div>
 
 			{/* Pagination Footer */}
-			<div className="pt-10 border-t border-zinc-200 flex items-center justify-between gap-4">
+			<div className="pt-8 border-t border-zinc-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
 				{prevSection ? (
 					<button
 						type="button"
 						onClick={() => onNavigate(prevSection.id)}
-						className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-zinc-200 hover:border-zinc-300 bg-white hover:bg-zinc-50 text-zinc-700 hover:text-zinc-900 text-xs transition-colors shadow-2xs"
+						className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg border border-zinc-200 hover:border-zinc-300 bg-white hover:bg-zinc-50 text-zinc-700 hover:text-zinc-900 text-xs transition-colors shadow-2xs w-full sm:w-auto"
 					>
-						<ArrowLeft className="w-4 h-4 text-cyan-600" />
-						<div className="text-left">
+						<ArrowLeft className="w-4 h-4 text-cyan-600 shrink-0" />
+						<div className="text-left min-w-0">
 							<div className="text-[10px] text-zinc-400 uppercase font-semibold">
 								Previous
 							</div>
-							<div className="font-medium truncate max-w-[140px] sm:max-w-[200px] text-zinc-900">
+							<div className="font-medium truncate max-w-[200px] sm:max-w-[180px] lg:max-w-[240px] text-zinc-900">
 								{prevSection.title}
 							</div>
 						</div>
 					</button>
 				) : (
-					<div />
+					<div className="hidden sm:block" />
 				)}
 
 				{nextSection && (
 					<button
 						type="button"
 						onClick={() => onNavigate(nextSection.id)}
-						className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-zinc-200 hover:border-zinc-300 bg-white hover:bg-zinc-50 text-zinc-700 hover:text-zinc-900 text-xs transition-colors ml-auto shadow-2xs"
+						className="flex items-center justify-between sm:justify-end gap-2.5 px-3.5 py-2.5 rounded-lg border border-zinc-200 hover:border-zinc-300 bg-white hover:bg-zinc-50 text-zinc-700 hover:text-zinc-900 text-xs transition-colors sm:ml-auto shadow-2xs w-full sm:w-auto"
 					>
-						<div className="text-right">
+						<div className="text-left sm:text-right min-w-0">
 							<div className="text-[10px] text-zinc-400 uppercase font-semibold">
 								Next
 							</div>
-							<div className="font-medium truncate max-w-[140px] sm:max-w-[200px] text-zinc-900">
+							<div className="font-medium truncate max-w-[200px] sm:max-w-[180px] lg:max-w-[240px] text-zinc-900">
 								{nextSection.title}
 							</div>
 						</div>
-						<ArrowRight className="w-4 h-4 text-cyan-600" />
+						<ArrowRight className="w-4 h-4 text-cyan-600 shrink-0" />
 					</button>
 				)}
 			</div>

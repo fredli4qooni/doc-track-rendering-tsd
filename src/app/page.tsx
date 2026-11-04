@@ -51,6 +51,7 @@ export default function Home() {
 					activeId={activeId}
 					onSelect={handleSelectSection}
 					searchQuery={searchQuery}
+					setSearchQuery={setSearchQuery}
 					isOpenMobile={isOpenMobile}
 					onCloseMobile={() => setIsOpenMobile(false)}
 				/>

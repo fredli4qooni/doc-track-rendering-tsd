@@ -4,9 +4,12 @@ import React from "react";
 import {
 	BookOpen,
 	Code2,
+	ExternalLink,
 	Layers,
+	Search,
 	Server,
-	ShieldCheck
+	ShieldCheck,
+	X
 } from "lucide-react";
 
 import { DOC_SECTIONS } from "../data/docsContent";
@@ -15,6 +18,7 @@ interface SidebarProps {
 	activeId: string;
 	onSelect: (id: string) => void;
 	searchQuery: string;
+	setSearchQuery?: (q: string) => void;
 	isOpenMobile: boolean;
 	onCloseMobile: () => void;
 }
@@ -31,6 +35,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 	activeId,
 	onSelect,
 	searchQuery,
+	setSearchQuery,
 	isOpenMobile,
 	onCloseMobile
 }) => {
@@ -125,24 +130,83 @@ export const Sidebar: React.FC<SidebarProps> = ({
 			{/* Mobile Drawer */}
 			{isOpenMobile && (
 				<div className="fixed inset-0 z-50 flex lg:hidden">
+					{/* Backdrop */}
 					<div
-						className="fixed inset-0 bg-black/40 backdrop-blur-xs"
+						className="fixed inset-0 bg-black/40 backdrop-blur-xs transition-opacity"
 						onClick={onCloseMobile}
 					/>
-					<div className="relative w-80 max-w-[85%] bg-white border-r border-zinc-200 h-full z-10 shadow-2xl">
-						<div className="p-4 border-b border-zinc-200 flex items-center justify-between">
-							<span className="font-semibold text-sm text-zinc-900">
-								Documentation Index
-							</span>
+
+					{/* Drawer Container */}
+					<div className="relative w-80 max-w-[85%] bg-white border-r border-zinc-200 h-full z-10 shadow-2xl flex flex-col animate-in slide-in-from-left duration-200">
+						{/* Drawer Header */}
+						<div className="p-4 border-b border-zinc-200 flex items-center justify-between shrink-0 bg-zinc-50/50">
+							<div className="flex items-center gap-2">
+								<BookOpen className="w-4 h-4 text-cyan-600" />
+								<span className="font-semibold text-sm text-zinc-900">
+									Documentation
+								</span>
+							</div>
 							<button
 								type="button"
 								onClick={onCloseMobile}
-								className="text-zinc-500 hover:text-zinc-800 text-xs px-2 py-1 rounded hover:bg-zinc-100"
+								className="text-zinc-500 hover:text-zinc-900 p-1.5 rounded-lg hover:bg-zinc-100 transition-colors"
+								aria-label="Close menu"
 							>
-								✕
+								<X className="w-5 h-5" />
 							</button>
 						</div>
-						{sidebarContent}
+
+						{/* Mobile Search Bar */}
+						{setSearchQuery && (
+							<div className="p-3 border-b border-zinc-100 bg-white shrink-0">
+								<div className="relative">
+									<Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400" />
+									<input
+										type="text"
+										placeholder="Search topics..."
+										value={searchQuery}
+										onChange={(e) => setSearchQuery(e.target.value)}
+										className="w-full bg-zinc-50 border border-zinc-200 rounded-lg pl-8 pr-7 py-1.5 text-xs text-zinc-800 placeholder:text-zinc-400 focus:outline-none focus:border-cyan-500 focus:bg-white transition-colors"
+									/>
+									{searchQuery && (
+										<button
+											type="button"
+											onClick={() => setSearchQuery("")}
+											className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-zinc-400 hover:text-zinc-600"
+										>
+											✕
+										</button>
+									)}
+								</div>
+							</div>
+						)}
+
+						{/* Drawer Scrollable Content */}
+						<div className="flex-1 overflow-y-auto min-h-0">
+							{sidebarContent}
+						</div>
+
+						{/* Drawer Footer Repositories */}
+						<div className="p-3 border-t border-zinc-200 bg-zinc-50/50 shrink-0 flex items-center justify-between gap-2 text-xs">
+							<a
+								href="https://github.com/fredli4qooni/fe-track-rendering-tsd.git"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-md bg-white border border-zinc-200 text-zinc-700 font-medium hover:bg-zinc-100 transition-colors shadow-2xs"
+							>
+								<span>FE Repo</span>
+								<ExternalLink className="w-3 h-3 text-zinc-400" />
+							</a>
+							<a
+								href="https://github.com/fredli4qooni/be-track-rendering-tsd.git"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-md bg-white border border-zinc-200 text-zinc-700 font-medium hover:bg-zinc-100 transition-colors shadow-2xs"
+							>
+								<span>BE Repo</span>
+								<ExternalLink className="w-3 h-3 text-zinc-400" />
+							</a>
+						</div>
 					</div>
 				</div>
 			)}
